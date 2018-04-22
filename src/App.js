@@ -18,6 +18,12 @@ class BooksApp extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
+	componentDidMount() {
+		BooksAPI.getAll().then((books) => {
+			this.setState({ books });
+		});
+	}
+
 	handleChange(event, bookFromSelect) {
 		for (const book of this.state.books) {
 			if (book.id === bookFromSelect.id) {
@@ -31,12 +37,6 @@ class BooksApp extends React.Component {
 		});
 		
 		BooksAPI.update(bookFromSelect, event.target.value);
-	}
-
-	componentDidMount() {
-		BooksAPI.getAll().then((books) => {
-			this.setState({ books });
-		});
 	}
 
 	render() {
