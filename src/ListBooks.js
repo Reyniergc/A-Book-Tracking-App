@@ -47,10 +47,10 @@ class ListBooks extends Component {
 
 ListBooks.propTypes = {
 	books: PropTypes.array.isRequired,
-	handleChange: PropTypes.func.isRequired
+	handleChange: PropTypes.func.isRequired,
+	value1: PropTypes.string.isRequired,
+	value2: PropTypes.string.isRequired,
+	value3: PropTypes.string.isRequired
 };
 
 export default ListBooks
-
-
-/*<a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>*/

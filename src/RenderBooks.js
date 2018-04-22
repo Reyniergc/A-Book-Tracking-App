@@ -45,11 +45,9 @@ class RenderBooks extends Component {
 
 RenderBooks.propTypes = {
 	books: PropTypes.array.isRequired,
-	shelfTitle: PropTypes.string.isRequired,
-	handleChange: PropTypes.func.isRequired
+	handleChange: PropTypes.func.isRequired,
+	value: PropTypes.string.isRequired,
+	shelfTitle: PropTypes.string.isRequired	
 };
 
 export default RenderBooks
-
-
-//<select name={shelfTitle} value={value} onChange={() => handleChange(this, book)}>
