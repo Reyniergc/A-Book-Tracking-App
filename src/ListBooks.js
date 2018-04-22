@@ -6,7 +6,7 @@ import RenderBooks from './RenderBooks'
 class ListBooks extends Component {
 
 	render() {
-		const { books } = this.props
+		const { books, handleChange, value1, value2, value3 } = this.props
 		let arrCurrentlyReading = [];
 		let arrWantToRead = [];
 		let arrRead = [];
@@ -31,9 +31,9 @@ class ListBooks extends Component {
 				</div>
 				<div className="list-books-content">
 					<div>
-						<RenderBooks books={arrCurrentlyReading} shelfTitle={"Currently Reading"} />
-						<RenderBooks books={arrWantToRead} shelfTitle={"Want To Read"} />
-						<RenderBooks books={arrRead} shelfTitle={"Read"} />
+						<RenderBooks books={arrCurrentlyReading} handleChange={handleChange} value={value1} shelfTitle={"Currently Reading"} />
+						<RenderBooks books={arrWantToRead} handleChange={handleChange} value={value2} shelfTitle={"Want To Read"} />
+						<RenderBooks books={arrRead} handleChange={handleChange} value={value3} shelfTitle={"Read"} />
 					</div>
 				</div>
 
@@ -46,7 +46,8 @@ class ListBooks extends Component {
 }
 
 ListBooks.propTypes = {
-	books: PropTypes.array.isRequired
+	books: PropTypes.array.isRequired,
+	handleChange: PropTypes.func.isRequired
 };
 
 export default ListBooks
