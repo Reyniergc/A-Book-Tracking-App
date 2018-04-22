@@ -45,7 +45,7 @@ class SearchBooks extends React.Component {
 									<div className="book">
 										<div className="book-top">
 											<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 
-												`url(${book.imageLinks.smallThumbnail})` }}>
+												`url(${ book.imageLinks.smallThumbnail })` }}>
 											</div>
 											<div className="book-shelf-changer">
 												<select >
@@ -54,6 +54,7 @@ class SearchBooks extends React.Component {
 													<option value="wantToRead">Want to Read</option>
 													<option value="read">Read</option>
 													<option value="none">None</option>
+													<option value="none">Add Book to Library</option>
 												</select>
 												<input type="hidden" value={book.id} id="prueba" />
 											</div>
