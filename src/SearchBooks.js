@@ -28,6 +28,8 @@ class SearchBooks extends React.Component {
 	}
 
 	render() {
+		const { addBookToLibrary } = this.props
+
 		return (
 			<div className="search-books">
 				<div className="search-books-bar">
@@ -48,7 +50,7 @@ class SearchBooks extends React.Component {
 												`url(${ book.imageLinks.smallThumbnail })` }}>
 											</div>
 											<div className="book-shelf-changer">
-												<select >
+												<select onChange={(event) => addBookToLibrary(event, book)}>
 													<option value="none" disabled>Move to...</option>
 													<option value="currentlyReading">Currently Reading</option>
 													<option value="wantToRead">Want to Read</option>
@@ -74,9 +76,10 @@ class SearchBooks extends React.Component {
 	}
 }
 
-/*SearchBooks.propTypes = {
-	books: PropTypes.array.isRequired
-};*/
+SearchBooks.propTypes = {
+	//books: PropTypes.array.isRequired
+	addBookToLibrary: PropTypes.func.isRequired
+};
 
 export default SearchBooks
 

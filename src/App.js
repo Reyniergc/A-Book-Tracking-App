@@ -38,6 +38,22 @@ class BooksApp extends React.Component {
 		
 		BooksAPI.update(bookFromSelect, event.target.value);
 	}
+	
+	addBookToLibrary = (event, bookFromSearchPage) => {
+		console.log(bookFromSearchPage);
+		
+		//names.map( name => name.length );
+		for (const book of this.state.books) {
+			if (book.id === bookFromSearchPage.id) {
+				books.add(bookFromSearchPage);
+				book.shelf = event.target.value;
+				break;
+			}
+		}
+
+		//BooksAPI.update(bookFromSelect, event.target.value);
+		//books.add();
+	}
 
 	render() {
 		return (
@@ -52,7 +68,7 @@ class BooksApp extends React.Component {
 					/>
 				)}/>
 				<Route path='/search' render={() => (
-					<SearchBooks />
+					<SearchBooks addBookToLibrary={this.addBookToLibrary} />
 				)}/>
 			</div>
 		);
