@@ -26,6 +26,15 @@ class SearchBooks extends React.Component {
 			this.setState({ listBooks: [] });
 		}
 	}
+	
+	/* If the book found on the search query is already on the shelf then the value of this book should
+	   be the value of the category of the book on the shelf otherwise the value should be none. */
+	isBookOnShelf(bookSearchResult) {
+		const { books } = this.props;
+		const result = books.filter(book => book.id === bookSearchResult.id);
+
+		return (result.length > 0) ? result[0].shelf : "none";		
+	}
 
 	render() {
 		const { addBookToLibrary } = this.props
@@ -46,24 +55,20 @@ class SearchBooks extends React.Component {
 								<li key={book.id}>
 									<div className="book">
 										<div className="book-top">
-											<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 
-												`url(${ book.imageLinks.smallThumbnail })` }}>
-											</div>
+											
 											<div className="book-shelf-changer">
-												<select onChange={(event) => addBookToLibrary(event, book)}>
-													<option value="none" disabled>Move to...</option>
+												<select value={this.isBookOnShelf(book)} onChange={(event) => addBookToLibrary(event, book)}>
+													<option disabled>Move to...</option>
 													<option value="currentlyReading">Currently Reading</option>
 													<option value="wantToRead">Want to Read</option>
 													<option value="read">Read</option>
 													<option value="none">None</option>
-													<option value="none">Add Book to Library</option>
 												</select>
 											</div>
 										</div>
 										<div className="book-title">{ book.title }</div>
-										{book.authors.map((author) => (
-											<div className="book-authors">{ author }</div>
-										))}
+										
+										
 									</div>
 								</li>
 							))}
@@ -76,7 +81,7 @@ class SearchBooks extends React.Component {
 }
 
 SearchBooks.propTypes = {
-	//books: PropTypes.array.isRequired
+	books: PropTypes.array.isRequired,
 	addBookToLibrary: PropTypes.func.isRequired
 };
 
@@ -104,3 +109,14 @@ export default SearchBooks
           </div>
 		  
 		  */
+		  
+		  
+		  
+		  /*<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 
+												`url(${ book.imageLinks.smallThumbnail })` }}>
+											</div>*/
+											
+											
+											/*{book.authors.map((author) => (
+											<div className="book-authors">{ author }</div>
+										))}*/
