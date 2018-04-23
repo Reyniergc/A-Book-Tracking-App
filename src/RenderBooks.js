@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 class RenderBooks extends Component {
 
 	render() {
-		const { books, handleChange, value, shelfTitle } = this.props
+		const { books, handleChange, shelfTitle } = this.props
 
 		return (
 			<div className="bookshelf">
@@ -19,14 +19,13 @@ class RenderBooks extends Component {
 											`url(${book.imageLinks.smallThumbnail})` }}>
 										</div>
 										<div className="book-shelf-changer">
-											<select name={shelfTitle} value={value} onChange={(event) => handleChange(event, book)}>
+											<select name={shelfTitle} value={book.shelf} onChange={(event) => handleChange(event, book)}>
 												<option value="none" disabled>Move to...</option>
 												<option value="currentlyReading">Currently Reading</option>
 												<option value="wantToRead">Want to Read</option>
 												<option value="read">Read</option>
 												<option value="none">None</option>
 											</select>
-											<input type="hidden" value={book.id} id="prueba" />
 										</div>
 									</div>
 									<div className="book-title">{ book.title }</div>
@@ -46,7 +45,6 @@ class RenderBooks extends Component {
 RenderBooks.propTypes = {
 	books: PropTypes.array.isRequired,
 	handleChange: PropTypes.func.isRequired,
-	value: PropTypes.string.isRequired,
 	shelfTitle: PropTypes.string.isRequired	
 };
 

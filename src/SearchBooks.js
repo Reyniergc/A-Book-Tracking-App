@@ -58,7 +58,6 @@ class SearchBooks extends React.Component {
 													<option value="none">None</option>
 													<option value="none">Add Book to Library</option>
 												</select>
-												<input type="hidden" value={book.id} id="prueba" />
 											</div>
 										</div>
 										<div className="book-title">{ book.title }</div>

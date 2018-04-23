@@ -9,10 +9,7 @@ class BooksApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			books: [],
-			value1: 'currentlyReading',
-			value2: 'wantToRead',
-			value3: 'read'
+			books: []
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -45,11 +42,15 @@ class BooksApp extends React.Component {
 		//names.map( name => name.length );
 		for (const book of this.state.books) {
 			if (book.id === bookFromSearchPage.id) {
-				books.add(bookFromSearchPage);
-				book.shelf = event.target.value;
+				this.books.add(bookFromSearchPage);
+				//book.shelf = event.target.value;
 				break;
 			}
 		}
+
+		this.setState({
+			books: this.state.books
+		});
 
 		//BooksAPI.update(bookFromSelect, event.target.value);
 		//books.add();
@@ -61,10 +62,7 @@ class BooksApp extends React.Component {
 				<Route exact path='/' render={() => (
 					<ListBooks
 						books={this.state.books}
-						handleChange={this.handleChange}
-						value1={this.state.value1}
-						value2={this.state.value2}
-						value3={this.state.value3}					
+						handleChange={this.handleChange}					
 					/>
 				)}/>
 				<Route path='/search' render={() => (
