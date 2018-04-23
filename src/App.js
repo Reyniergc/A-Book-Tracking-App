@@ -36,24 +36,31 @@ class BooksApp extends React.Component {
 		BooksAPI.update(bookFromSelect, event.target.value);
 	}
 	
-	addBookToLibrary = (event, bookFromSearchPage) => {
-		console.log(bookFromSearchPage);
-		
-		//names.map( name => name.length );
-		for (const book of this.state.books) {
-			if (book.id === bookFromSearchPage.id) {
-				this.books.add(bookFromSearchPage);
-				//book.shelf = event.target.value;
-				break;
-			}
+	/* This method verify if the book in on the library in this case the book is add directly. On the
+	   other hand, if the book is not on the library we must update only the property shelf of the book.
+	*/
+	isBookOnShelf(bookFromSearchPage) {
+		return this.state.books.filter(book => book.id === bookFromSearchPage.id);
+	}
+
+	updateListShelf = (event, bookFromSearchPage) => {
+		let book = this.isBookOnShelf(bookFromSearchPage);
+
+		if (book.length === 0) {
+			// Add new property shelf to the new book added to the list of shelves.
+			bookFromSearchPage["shelf"] = event.target.value;
+			this.setState({
+				books: this.state.books.push(bookFromSearchPage)
+			});
+		}
+		else {
+			book[0].shelf = event.target.value;
+			this.setState({
+				books: this.state.books
+			});
 		}
 
-		this.setState({
-			books: this.state.books
-		});
-
-		//BooksAPI.update(bookFromSelect, event.target.value);
-		//books.add();
+		BooksAPI.update(bookFromSearchPage, event.target.value);
 	}
 
 	render() {
@@ -66,7 +73,10 @@ class BooksApp extends React.Component {
 					/>
 				)}/>
 				<Route path='/search' render={() => (
-					<SearchBooks books={this.state.books} addBookToLibrary={this.addBookToLibrary} />
+					<SearchBooks
+						books={this.state.books}
+						updateListShelf={this.updateListShelf}
+					/>
 				)}/>
 			</div>
 		);

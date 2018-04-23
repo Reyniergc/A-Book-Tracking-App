@@ -37,7 +37,7 @@ class SearchBooks extends React.Component {
 	}
 
 	render() {
-		const { addBookToLibrary } = this.props
+		const { updateListShelf } = this.props
 
 		return (
 			<div className="search-books">
@@ -57,7 +57,7 @@ class SearchBooks extends React.Component {
 										<div className="book-top">
 											
 											<div className="book-shelf-changer">
-												<select value={this.isBookOnShelf(book)} onChange={(event) => addBookToLibrary(event, book)}>
+												<select value={this.isBookOnShelf(book)} onChange={(event) => updateListShelf(event, book)}>
 													<option disabled>Move to...</option>
 													<option value="currentlyReading">Currently Reading</option>
 													<option value="wantToRead">Want to Read</option>
@@ -82,7 +82,7 @@ class SearchBooks extends React.Component {
 
 SearchBooks.propTypes = {
 	books: PropTypes.array.isRequired,
-	addBookToLibrary: PropTypes.func.isRequired
+	updateListShelf: PropTypes.func.isRequired
 };
 
 export default SearchBooks
