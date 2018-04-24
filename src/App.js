@@ -36,8 +36,8 @@ class BooksApp extends React.Component {
 		BooksAPI.update(bookFromSelect, event.target.value);
 	}
 	
-	/* This method verify if the book in on the library in this case the book is add directly. On the
-	   other hand, if the book is not on the library we must update only the property shelf of the book.
+	/* This method verify if the book is on the library. If is not on the library then the book is add directly.
+	   On the other hand, if the book is on the library we must update only the property shelf of the book.
 	*/
 	isBookOnShelf(bookFromSearchPage) {
 		return this.state.books.filter(book => book.id === bookFromSearchPage.id);
