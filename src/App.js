@@ -21,19 +21,21 @@ class BooksApp extends React.Component {
 		});
 	}
 
-	handleChange(event, bookFromSelect) {
-		for (const book of this.state.books) {
-			if (book.id === bookFromSelect.id) {
-				book.shelf = event.target.value;
-				break;
-			}
-		}
-
-		this.setState({
-			books: this.state.books
-		});
+	handleChange(event, bookFromSelect) {		
+		const value = event.target.value;
 		
-		BooksAPI.update(bookFromSelect, event.target.value);
+		BooksAPI.update(bookFromSelect, event.target.value).then(() => {
+			for (const book of this.state.books) {
+				if (book.id === bookFromSelect.id) {
+					book.shelf = value;
+					break;
+				}
+			}
+
+			this.setState({
+				books: this.state.books
+			});
+		})
 	}
 	
 	/* This method verify if the book is on the library. If is not on the library then the book is add directly.

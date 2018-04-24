@@ -19,8 +19,7 @@ class ListBooks extends Component {
 			else if (book.shelf.toLowerCase() === "wantToRead".toLowerCase()) {
 				arrWantToRead.push(book);
 			}
-			else {
-			//else if (book.shelf.toLowerCase() === "read".toLowerCase()) {
+			else if (book.shelf.toLowerCase() === "read".toLowerCase()) {
 				arrRead.push(book);
 			}
 		}
