@@ -21,9 +21,9 @@ In the search page the user can type into the input to find books and add it to 
 - BooksApi.js
 
 This is one of the most important files of the aplication. The aplication uses this file to fetch the books that are displayed in the search page. In this
-case the APi to use is the **search function** that returns a list of books.
+case the APi to use is the **search APi** that returns a list of books.
 
-The **update function** is used to add a book and persist information. So that the next time we run the aplication we can see again the books
+The **update APi** is used to add a book and persist information. So that the next time we run the aplication we can see again the books
 that was added to the list.
 
 The **getAll APi** is used by the main page to fetch all books availables on the sever and display it on the list.
