@@ -16,7 +16,7 @@ can change the status of a book on the shelf for one of the three types mentione
 
 In the search page the user can type into the input to find books and add it to on of the three possibles shelves.
 
-**__Javascript files explanation__**
+**__Javascript files explanation:__**
 
 - BooksApi.js
 
