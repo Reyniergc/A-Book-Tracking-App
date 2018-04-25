@@ -23,10 +23,14 @@ class SearchBooks extends React.Component {
 					const books = queryBooks.filter(book => book.imageLinks && book.authors);
 					this.setState({ listBooks: books });
 				}
+				else {
+					this.setState({ listBooks: [] });
+				}
 			});
 		}
-
-		this.setState({ listBooks: [] });
+		else {
+			this.setState({ listBooks: [] });
+		}
 	}
 	
 	/* If the book found on the search query is already on the shelf then the value of this book should
