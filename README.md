@@ -10,6 +10,9 @@ Project realized during the Udacity Front-End Nano Degree course.
   - Install node router if is necessary use the following command -> npm install --save react-router-dom
 - To run the aplication use the link http://localhost:3000 
 
+**React Official Documentation**
+https://reactjs.org
+
 
 **__Main goal of the project Book Tracking.__**
 
