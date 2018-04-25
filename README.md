@@ -19,6 +19,7 @@ In the search page the user can type into the input to find books and add it to 
 **__Javascript files explanation__**
 
 - BooksApi.js
+
 This is one of the most important files of the aplication. The aplication uses this file to fetch the books that are displayed in the search page. In this
 case the APi to use is the **search function** that returns a list of books.
 
@@ -29,7 +30,9 @@ The **getAll APi** is used by the main page to fetch all books availables on the
 
 
 - SearchBooks.js
+
 A page to search books by title or author.
 
 - App.js
+
 The inital page that shows a list of three types of books (Currently Reading, Want To Read, Read).
