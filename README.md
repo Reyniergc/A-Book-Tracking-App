@@ -7,6 +7,7 @@ Project realized during the Udacity Front-End Nano Degree course.
 - Open the command line in the folder of your project and execute the followings commands:
   - **npm install**. That will install the node dependencies
   - Now start the server -> **npm start**
+  - Install node router if is necessary use the following command -> npm install --save react-router-dom
 - To run the aplication use the link http://localhost:3000 
 
 
