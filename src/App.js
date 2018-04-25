@@ -24,16 +24,16 @@ class BooksApp extends React.Component {
 	handleChange(event, bookFromSelect) {		
 		const value = event.target.value;
 		
-		BooksAPI.update(bookFromSelect, event.target.value).then(() => {
-			for (const book of this.state.books) {
-				if (book.id === bookFromSelect.id) {
-					book.shelf = value;
-					break;
+		BooksAPI.update(bookFromSelect, event.target.value).then(() => {			
+			this.setState(state => {
+				for (const book of state.books) {
+					if (book.id === bookFromSelect.id) {
+						book.shelf = value;
+						break;
+					}
 				}
-			}
 
-			this.setState({
-				books: this.state.books
+				return { books: state.books }
 			});
 		})
 	}
@@ -52,18 +52,18 @@ class BooksApp extends React.Component {
 		BooksAPI.update(bookFromSearchPage, event.target.value).then(() => {
 			let book = this.isBookOnShelf(bookSearch);
 			
-			if (book.length === 0) {
-				// Add new property shelf to the new book added to the list of shelves.
-				bookSearch["shelf"] = value;
-				this.state.books.push(bookSearch);
-			}
-			else {
-				book[0].shelf = value;
-			}
-			
-			this.setState(state => ({
-				books: state.books
-			}));
+			this.setState(state => {
+				if (book.length === 0) {
+					// Add new property shelf to the new book added to the list of shelves.
+					bookSearch["shelf"] = value;
+					state.books.concat(bookSearch);
+				}
+				else {
+					book[0].shelf = value;
+				}
+
+				return { books: state.books }
+			});
 		})
 	}
 

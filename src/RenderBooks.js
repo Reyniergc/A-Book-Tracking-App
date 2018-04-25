@@ -19,7 +19,7 @@ class RenderBooks extends Component {
 											`url(${book.imageLinks.smallThumbnail})` }}>
 										</div>
 										<div className="book-shelf-changer">
-											<select name={shelfTitle} value={book.shelf} onChange={(event) => handleChange(event, book)}>
+											<select value={book.shelf} onChange={(event) => handleChange(event, book)}>
 												<option value="none" disabled>Move to...</option>
 												<option value="currentlyReading">Currently Reading</option>
 												<option value="wantToRead">Want to Read</option>
