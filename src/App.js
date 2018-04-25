@@ -67,26 +67,6 @@ class BooksApp extends React.Component {
 		})
 	}
 
-	/*updateListShelf = (event, bookFromSearchPage) => {
-		let book = this.isBookOnShelf(bookFromSearchPage);
-
-		if (book.length === 0) {
-			// Add new property shelf to the new book added to the list of shelves.
-			bookFromSearchPage["shelf"] = event.target.value;
-			this.setState({
-				books: this.state.books.push(bookFromSearchPage)
-			});
-		}
-		else {
-			book[0].shelf = event.target.value;
-			this.setState({
-				books: this.state.books
-			});
-		}
-
-		BooksAPI.update(bookFromSearchPage, event.target.value);
-	}*/
-
 	render() {
 		return (
 			<div className="app">
