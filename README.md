@@ -4,7 +4,9 @@ Project realized during the Udacity Front-End Nano Degree course.
 
 **__Requeriments to run the aplication:__**
 - Download and install node.js
-- Open the command line in the folder of your project and execute the following command to start the server -> **npm start**
+- Open the command line in the folder of your project and execute the followings commands:
+  - **npm install**. That will install the node dependencies
+  - Now start the server -> **npm start**
 - To run the aplication use the link http://localhost:3000 
 
 
