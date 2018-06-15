@@ -31,6 +31,7 @@ class SearchBooks extends React.Component {
 		this.setState({ listBooks: this.state.listBooks });
 		
 		// Aqui tens que chamar o metodo que tens no App.js aquele metodo que tinhas no onchange
+		// ja que nao podes ter este metodo no onchange diretamente porque so aceita 1 o que tem o nome prueba.
 		updateListShelf(event, bookSelect);
 	}
 	
