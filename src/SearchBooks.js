@@ -12,16 +12,48 @@ class SearchBooks extends React.Component {
 		};
 
 		this.handleChange = this.handleChange.bind(this);
+		this.prueba = this.prueba.bind(this);
 	}
+	
+	prueba = (event, bookSelect) => {
+		const { updateListShelf } = this.props;
 
+		for (const book of this.state.listBooks) {
+			if (book.id === bookSelect.id) {
+				book.shelf = event.target.value;
+				break;
+			}
+		}
+
+		this.setState({ listBooks: this.state.listBooks });
+		
+		updateListShelf(event, bookSelect);
+	}
+	
 	handleChange = (event) => {
+		const { books } = this.props;
 		const query = event.target.value.trim();
 
 		if (query.length > 0) {
 			BooksAPI.search(query).then((queryBooks) => {
 				if (queryBooks instanceof Array) {
-					const books = queryBooks.filter(book => book.imageLinks && book.authors);
-					this.setState({ listBooks: books });
+					let booksFilter = queryBooks.filter(book => book.imageLinks && book.authors);
+					
+					for (const bookFilter of booksFilter) {
+						bookFilter.shelf = "none";
+					}
+					
+					if (booksFilter !== undefined) {
+						for (const book of books) {
+							for (let bookFilter of booksFilter) {
+								if (book.id === bookFilter.id) {
+									bookFilter.shelf = book.shelf;
+									break;
+								}
+							}
+						}
+						this.setState({ listBooks: booksFilter });
+					}
 				}
 				else {
 					this.setState({ listBooks: [] });
@@ -43,7 +75,7 @@ class SearchBooks extends React.Component {
 	}
 
 	render() {
-		const { updateListShelf } = this.props
+		//const { updateListShelf } = this.props
 
 		return (
 			<div className="search-books">
@@ -64,7 +96,7 @@ class SearchBooks extends React.Component {
 											`url(${ book.imageLinks.smallThumbnail })` }}>
 										</div>
 										<div className="book-shelf-changer">
-											<select value={this.isBookOnShelf(book)} onChange={(event) => updateListShelf(event, book)}>
+											<select value={book.shelf} onChange={(event) => this.prueba(event, book)}>
 												<option disabled>Move to...</option>
 												<option value="currentlyReading">Currently Reading</option>
 												<option value="wantToRead">Want to Read</option>
