@@ -18,6 +18,8 @@ class SearchBooks extends React.Component {
 	prueba = (event, bookSelect) => {
 		const { updateListShelf } = this.props;
 
+		// Buscas o novo estado selecinado e atualizas o teu array com os livros encontrados anteriormente no seach
+		// assim esse livro fica com o novo estado e depois com o render fica selecinado e nao vai para o none.
 		for (const book of this.state.listBooks) {
 			if (book.id === bookSelect.id) {
 				book.shelf = event.target.value;
@@ -25,8 +27,10 @@ class SearchBooks extends React.Component {
 			}
 		}
 
+		// Tens que fazer isto para voltar a fazer o render com o novo shelf selecinado no select
 		this.setState({ listBooks: this.state.listBooks });
 		
+		// Aqui tens que chamar o metodo que tens no App.js aquele metodo que tinhas no onchange
 		updateListShelf(event, bookSelect);
 	}
 	
@@ -39,6 +43,7 @@ class SearchBooks extends React.Component {
 				if (queryBooks instanceof Array) {
 					let booksFilter = queryBooks.filter(book => book.imageLinks && book.authors);
 					
+					//Inicialmente o estado dos livros encontrados no search estao todos a none
 					for (const bookFilter of booksFilter) {
 						bookFilter.shelf = "none";
 					}
@@ -46,6 +51,7 @@ class SearchBooks extends React.Component {
 					if (booksFilter !== undefined) {
 						for (const book of books) {
 							for (let bookFilter of booksFilter) {
+								// atualizamos o estado se o livro existir no resultado dos livrosdo search
 								if (book.id === bookFilter.id) {
 									bookFilter.shelf = book.shelf;
 									break;
@@ -64,19 +70,8 @@ class SearchBooks extends React.Component {
 			this.setState({ listBooks: [] });
 		}
 	}
-	
-	/* If the book found on the search query is already on the shelf then the value of this book should
-	   be the value of the category of the book on the shelf otherwise the value should be none. */
-	isBookOnShelf(bookSearchResult) {
-		const { books } = this.props;
-		const result = books.filter(book => book.id === bookSearchResult.id);
-
-		return (result.length > 0) ? result[0].shelf : "none";		
-	}
 
 	render() {
-		//const { updateListShelf } = this.props
-
 		return (
 			<div className="search-books">
 				<div className="search-books-bar">
